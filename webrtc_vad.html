@@ -1,109 +1,109 @@
 <!doctype html>
 <html lang="en-us">
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <title>Emscripten-Generated Code</title>
-  <style>
-    body {
-      font-family: arial;
-      margin: 0;
-      padding: none;
-    }
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Emscripten-Generated Code</title>
+    <style>
+      body {
+        font-family: arial;
+        margin: 0;
+        padding: none;
+      }
 
-    .emscripten { padding-right: 0; margin-left: auto; margin-right: auto; display: block; }
-    div.emscripten { text-align: center; }
-    div.emscripten_border { border: 1px solid black; }
-    /* the canvas *must not* have any border or padding, or mouse coords will be wrong */
-    canvas.emscripten { border: 0px none; background-color: black; }
+      .emscripten { padding-right: 0; margin-left: auto; margin-right: auto; display: block; }
+      div.emscripten { text-align: center; }      
+      div.emscripten_border { border: 1px solid black; }
+      /* the canvas *must not* have any border or padding, or mouse coords will be wrong */
+      canvas.emscripten { border: 0px none; background-color: black; }
 
-    #emscripten_logo {
-      display: inline-block;
-      margin: 0;
-    }
+      #emscripten_logo {
+        display: inline-block;
+        margin: 0;
+      }
 
-    .spinner {
-      height: 30px;
-      width: 30px;
-      margin: 0;
-      margin-top: 20px;
-      margin-left: 20px;
-      display: inline-block;
-      vertical-align: top;
+      .spinner {
+        height: 30px;
+        width: 30px;
+        margin: 0;
+        margin-top: 20px;
+        margin-left: 20px;
+        display: inline-block;
+        vertical-align: top;
 
-      -webkit-animation: rotation .8s linear infinite;
-      -moz-animation: rotation .8s linear infinite;
-      -o-animation: rotation .8s linear infinite;
-      animation: rotation 0.8s linear infinite;
+        -webkit-animation: rotation .8s linear infinite;
+        -moz-animation: rotation .8s linear infinite;
+        -o-animation: rotation .8s linear infinite;
+        animation: rotation 0.8s linear infinite;
 
-      border-left: 5px solid rgb(235, 235, 235);
-      border-right: 5px solid rgb(235, 235, 235);
-      border-bottom: 5px solid rgb(235, 235, 235);
-      border-top: 5px solid rgb(120, 120, 120);
+        border-left: 5px solid rgb(235, 235, 235);
+        border-right: 5px solid rgb(235, 235, 235);
+        border-bottom: 5px solid rgb(235, 235, 235);
+        border-top: 5px solid rgb(120, 120, 120);
+        
+        border-radius: 100%;
+        background-color: rgb(189, 215, 46);
+      }
 
-      border-radius: 100%;
-      background-color: rgb(189, 215, 46);
-    }
+      @-webkit-keyframes rotation {
+        from {-webkit-transform: rotate(0deg);}
+        to {-webkit-transform: rotate(360deg);}
+      }
+      @-moz-keyframes rotation {
+        from {-moz-transform: rotate(0deg);}
+        to {-moz-transform: rotate(360deg);}
+      }
+      @-o-keyframes rotation {
+        from {-o-transform: rotate(0deg);}
+        to {-o-transform: rotate(360deg);}
+      }
+      @keyframes rotation {
+        from {transform: rotate(0deg);}
+        to {transform: rotate(360deg);}
+      }
 
-    @-webkit-keyframes rotation {
-      from {-webkit-transform: rotate(0deg);}
-      to {-webkit-transform: rotate(360deg);}
-    }
-    @-moz-keyframes rotation {
-      from {-moz-transform: rotate(0deg);}
-      to {-moz-transform: rotate(360deg);}
-    }
-    @-o-keyframes rotation {
-      from {-o-transform: rotate(0deg);}
-      to {-o-transform: rotate(360deg);}
-    }
-    @keyframes rotation {
-      from {transform: rotate(0deg);}
-      to {transform: rotate(360deg);}
-    }
+      #status {
+        display: inline-block;
+        vertical-align: top;
+        margin-top: 30px;
+        margin-left: 20px;
+        font-weight: bold;
+        color: rgb(120, 120, 120);
+      }
 
-    #status {
-      display: inline-block;
-      vertical-align: top;
-      margin-top: 30px;
-      margin-left: 20px;
-      font-weight: bold;
-      color: rgb(120, 120, 120);
-    }
+      #progress {
+        height: 20px;
+        width: 30px;
+      }
 
-    #progress {
-      height: 20px;
-      width: 30px;
-    }
+      #controls {
+        display: inline-block;
+        float: right;
+        vertical-align: top;
+        margin-top: 30px;
+        margin-right: 20px;
+      }
 
-    #controls {
-      display: inline-block;
-      float: right;
-      vertical-align: top;
-      margin-top: 30px;
-      margin-right: 20px;
-    }
-
-    #output {
-      width: 100%;
-      height: 200px;
-      margin: 0 auto;
-      margin-top: 10px;
-      border-left: 0px;
-      border-right: 0px;
-      padding-left: 0px;
-      padding-right: 0px;
-      display: block;
-      background-color: black;
-      color: white;
-      font-family: 'Lucida Console', Monaco, monospace;
-      outline: none;
-    }
-  </style>
-</head>
-<body>
-<a href="http://emscripten.org">
-  <svg
+      #output {
+        width: 100%;
+        height: 200px;
+        margin: 0 auto;
+        margin-top: 10px;
+        border-left: 0px;
+        border-right: 0px;
+        padding-left: 0px;
+        padding-right: 0px;
+        display: block;
+        background-color: black;
+        color: white;
+        font-family: 'Lucida Console', Monaco, monospace;
+        outline: none;
+      }
+    </style>
+  </head>
+  <body>
+    <a href="http://emscripten.org">
+      <svg
    version="1.1"
    id="Layer_1"
    x="0px"
@@ -1193,10 +1193,10 @@
    offset="0.6933" /><a:midPointStop
    style="stop-color:#000000;stop-opacity:0"
    offset="1" /></linearGradient></g></g></svg>
-</a>
+    </a>
 
-<div class="spinner" id='spinner'></div>
-<div class="emscripten" id="status">Downloading...</div>
+    <div class="spinner" id='spinner'></div>
+    <div class="emscripten" id="status">Downloading...</div>
 
 <span id='controls'>
   <span><input type="checkbox" id="resize">Resize canvas</span>
@@ -1206,205 +1206,114 @@
   </span>
 </span>
 
-<div class="emscripten">
-  <progress value="0" max="100" id="progress" hidden=1></progress>
-</div>
+    <div class="emscripten">
+      <progress value="0" max="100" id="progress" hidden=1></progress>
+    </div>
 
+    
+    <div class="emscripten_border">
+      <canvas class="emscripten" id="canvas" oncontextmenu="event.preventDefault()"></canvas>
+    </div>
+    <textarea id="output" rows="8"></textarea>
 
-<div class="emscripten_border">
-  <canvas class="emscripten" id="canvas" oncontextmenu="event.preventDefault()"></canvas>
-</div>
-<textarea id="output" rows="8"></textarea>
+    <script type='text/javascript'>
+      var statusElement = document.getElementById('status');
+      var progressElement = document.getElementById('progress');
+      var spinnerElement = document.getElementById('spinner');
 
-<script type='text/javascript'>
-  var statusElement = document.getElementById('status');
-  var progressElement = document.getElementById('progress');
-  var spinnerElement = document.getElementById('spinner');
+      var Module = {
+        preRun: [],
+        postRun: [],
+        print: (function() {
+          var element = document.getElementById('output');
+          if (element) element.value = ''; // clear browser cache
+          return function(text) {
+            if (arguments.length > 1) text = Array.prototype.slice.call(arguments).join(' ');
+            // These replacements are necessary if you render to raw HTML
+            //text = text.replace(/&/g, "&amp;");
+            //text = text.replace(/</g, "&lt;");
+            //text = text.replace(/>/g, "&gt;");
+            //text = text.replace('\n', '<br>', 'g');
+            console.log(text);
+            if (element) {
+              element.value += text + "\n";
+              element.scrollTop = element.scrollHeight; // focus on bottom
+            }
+          };
+        })(),
+        printErr: function(text) {
+          if (arguments.length > 1) text = Array.prototype.slice.call(arguments).join(' ');
+          if (0) { // XXX disabled for safety typeof dump == 'function') {
+            dump(text + '\n'); // fast, straight to the real console
+          } else {
+            console.error(text);
+          }
+        },
+        canvas: (function() {
+          var canvas = document.getElementById('canvas');
 
-  var Module = {
-    preRun: [],
-    postRun: [],
-    print: (function() {
-      var element = document.getElementById('output');
-      if (element) element.value = ''; // clear browser cache
-      return function(text) {
-        if (arguments.length > 1) text = Array.prototype.slice.call(arguments).join(' ');
-        // These replacements are necessary if you render to raw HTML
-        //text = text.replace(/&/g, "&amp;");
-        //text = text.replace(/</g, "&lt;");
-        //text = text.replace(/>/g, "&gt;");
-        //text = text.replace('\n', '<br>', 'g');
-        console.log(text);
-        if (element) {
-          element.value += text + "\n";
-          element.scrollTop = element.scrollHeight; // focus on bottom
+          // As a default initial behavior, pop up an alert when webgl context is lost. To make your
+          // application robust, you may want to override this behavior before shipping!
+          // See http://www.khronos.org/registry/webgl/specs/latest/1.0/#5.15.2
+          canvas.addEventListener("webglcontextlost", function(e) { alert('WebGL context lost. You will need to reload the page.'); e.preventDefault(); }, false);
+
+          return canvas;
+        })(),
+        setStatus: function(text) {
+          if (!Module.setStatus.last) Module.setStatus.last = { time: Date.now(), text: '' };
+          if (text === Module.setStatus.text) return;
+          var m = text.match(/([^(]+)\((\d+(\.\d+)?)\/(\d+)\)/);
+          var now = Date.now();
+          if (m && now - Date.now() < 30) return; // if this is a progress update, skip it if too soon
+          if (m) {
+            text = m[1];
+            progressElement.value = parseInt(m[2])*100;
+            progressElement.max = parseInt(m[4])*100;
+            progressElement.hidden = false;
+            spinnerElement.hidden = false;
+          } else {
+            progressElement.value = null;
+            progressElement.max = null;
+            progressElement.hidden = true;
+            if (!text) spinnerElement.style.display = 'none';
+          }
+          statusElement.innerHTML = text;
+        },
+        totalDependencies: 0,
+        monitorRunDependencies: function(left) {
+          this.totalDependencies = Math.max(this.totalDependencies, left);
+          Module.setStatus(left ? 'Preparing... (' + (this.totalDependencies-left) + '/' + this.totalDependencies + ')' : 'All downloads complete.');
         }
       };
-    })(),
-    printErr: function(text) {
-      if (arguments.length > 1) text = Array.prototype.slice.call(arguments).join(' ');
-      if (0) { // XXX disabled for safety typeof dump == 'function') {
-        dump(text + '\n'); // fast, straight to the real console
-      } else {
-        console.error(text);
-      }
-    },
-    canvas: (function() {
-      var canvas = document.getElementById('canvas');
+      Module.setStatus('Downloading...');
+      window.onerror = function(event) {
+        // TODO: do not warn on ok events like simulating an infinite loop or exitStatus
+        Module.setStatus('Exception thrown, see JavaScript console');
+        spinnerElement.style.display = 'none';
+        Module.setStatus = function(text) {
+          if (text) Module.printErr('[post-exception status] ' + text);
+        };
+      };
+    </script>
+    <script>
 
-      // As a default initial behavior, pop up an alert when webgl context is lost. To make your
-      // application robust, you may want to override this behavior before shipping!
-      // See http://www.khronos.org/registry/webgl/specs/latest/1.0/#5.15.2
-      canvas.addEventListener("webglcontextlost", function(e) { alert('WebGL context lost. You will need to reload the page.'); e.preventDefault(); }, false);
+          (function() {
+            var memoryInitializer = 'webrtc_vad.html.mem';
+            if (typeof Module['locateFile'] === 'function') {
+              memoryInitializer = Module['locateFile'](memoryInitializer);
+            } else if (Module['memoryInitializerPrefixURL']) {
+              memoryInitializer = Module['memoryInitializerPrefixURL'] + memoryInitializer;
+            }
+            var meminitXHR = Module['memoryInitializerRequest'] = new XMLHttpRequest();
+            meminitXHR.open('GET', memoryInitializer, true);
+            meminitXHR.responseType = 'arraybuffer';
+            meminitXHR.send(null);
+          })();
 
-      return canvas;
-    })(),
-    setStatus: function(text) {
-      if (!Module.setStatus.last) Module.setStatus.last = { time: Date.now(), text: '' };
-      if (text === Module.setStatus.text) return;
-      var m = text.match(/([^(]+)\((\d+(\.\d+)?)\/(\d+)\)/);
-      var now = Date.now();
-      if (m && now - Date.now() < 30) return; // if this is a progress update, skip it if too soon
-      if (m) {
-        text = m[1];
-        progressElement.value = parseInt(m[2])*100;
-        progressElement.max = parseInt(m[4])*100;
-        progressElement.hidden = false;
-        spinnerElement.hidden = false;
-      } else {
-        progressElement.value = null;
-        progressElement.max = null;
-        progressElement.hidden = true;
-        if (!text) spinnerElement.style.display = 'none';
-      }
-      statusElement.innerHTML = text;
-    },
-    totalDependencies: 0,
-    monitorRunDependencies: function(left) {
-      this.totalDependencies = Math.max(this.totalDependencies, left);
-      Module.setStatus(left ? 'Preparing... (' + (this.totalDependencies-left) + '/' + this.totalDependencies + ')' : 'All downloads complete.');
-    }
-  };
-  Module.setStatus('Downloading...');
-  window.onerror = function(event) {
-    // TODO: do not warn on ok events like simulating an infinite loop or exitStatus
-    Module.setStatus('Exception thrown, see JavaScript console');
-    spinnerElement.style.display = 'none';
-    Module.setStatus = function(text) {
-      if (text) Module.printErr('[post-exception status] ' + text);
-    };
-  };
-
-  Module.noInitialRun = true;
-  Module['onRuntimeInitialized'] = function() { setupwebrtc(); };
-  function setupwebrtc(){
-    console.log('setupwebrtc');
-    var main = Module.cwrap('main');
-    main();
-    var setmode = Module.cwrap('setmode', 'number', ['number']);
-    console.log(setmode(3));
-    var process_data = Module.cwrap('process_data', 'number', ['number', 'number', 'number', 'number', 'number', 'number']);
-
-    const sizeBufferVad = 480;
-    let leftovers = 0;
-    let buffer_vad = new Int16Array(sizeBufferVad);
-    function recorderProcess(e) {
-      let buffer_pcm = new Int16Array(e.inputBuffer.getChannelData(0).length);
-      floatTo16BitPCM(buffer_pcm, e.inputBuffer.getChannelData(0));
-
-      for (let i = 0; i < Math.ceil(buffer_pcm.length/sizeBufferVad); i++) {
-        let start = i * sizeBufferVad;
-        let end = start+sizeBufferVad;
-        if ((start + sizeBufferVad) > buffer_pcm.length) {
-          // armazena para o proximo
-          buffer_vad.set(buffer_pcm.slice(start));
-          leftovers =  buffer_pcm.length - start;
-        } else {
-          if (leftovers > 0) {
-            // we have leftovers from previous array
-            end = end - leftovers;
-            buffer_vad.set((buffer_pcm.slice(start, end)), leftovers);
-            leftovers =  0;
-          } else {
-            // envia para o vad
-            buffer_vad.set(buffer_pcm.slice(start, end));
-          }
-          let silence = isSilence(buffer_vad);
-          buffer_vad = new Int16Array(sizeBufferVad);
-        }
-      }
-    }
-
-
-    function isSilence(buffer_pcm){
-        // Get data byte size, allocate memory on Emscripten heap, and get pointer
-        let nDataBytes = buffer_pcm.length * buffer_pcm.BYTES_PER_ELEMENT;
-        let dataPtr = Module._malloc(nDataBytes);
-
-        // Copy data to Emscripten heap (directly accessed from Module.HEAPU8)
-        let dataHeap = new Uint8Array(Module.HEAPU8.buffer, dataPtr, nDataBytes);
-        dataHeap.set(new Uint8Array(buffer_pcm.buffer));
-
-        // Call function and get result
-        let result = process_data(dataHeap.byteOffset, buffer_pcm.length, 48000, buffer_pcm[0], buffer_pcm[100], buffer_pcm[2000]);
-        console.log(result);
-
-        // Free memory
-        Module._free(dataHeap.byteOffset);
-    }
-
-    let constraints = { audio: true };
-    navigator.mediaDevices.getUserMedia(constraints)
-            .then(function(stream) {
-
-              var audioContext = window.AudioContext;
-              var context = new audioContext();
-              console.log(context.sampleRate);
-              var audioInput = context.createMediaStreamSource(stream);
-              var bufferSize = 2048;
-              // create a javascript node
-              var recorder = context.createScriptProcessor(bufferSize, 1, 1);
-              // specify the processing function
-              recorder.onaudioprocess = recorderProcess;
-              // connect stream to our recorder
-              audioInput.connect(recorder);
-              // connect our recorder to the previous destination
-              recorder.connect(context.destination);
-
-            })
-            .catch(function(err) {
-              console.log(`Recording error: ${err}`);
-            });
-  }
-
-
-  function floatTo16BitPCM(output, input) {
-    for (let i = 0; i < input.length; i++) {
-      let s = Math.max(-1, Math.min(1, input[i]));
-      output[i] =  s < 0 ? s * 0x8000 : s * 0x7FFF;
-    }
-  }
+          var script = document.createElement('script');
+          script.src = "webrtc_vad.js";
+          document.body.appendChild(script);
 
 </script>
-<script>
-
-  (function() {
-    var memoryInitializer = 'webrtc_vad.html.mem';
-    if (typeof Module['locateFile'] === 'function') {
-      memoryInitializer = Module['locateFile'](memoryInitializer);
-    } else if (Module['memoryInitializerPrefixURL']) {
-      memoryInitializer = Module['memoryInitializerPrefixURL'] + memoryInitializer;
-    }
-    var meminitXHR = Module['memoryInitializerRequest'] = new XMLHttpRequest();
-    meminitXHR.open('GET', memoryInitializer, true);
-    meminitXHR.responseType = 'arraybuffer';
-    meminitXHR.send(null);
-  })();
-
-  var script = document.createElement('script');
-  script.src = "webrtc_vad.js";
-  document.body.appendChild(script);
-
-</script>
-</body>
+  </body>
 </html>
