@@ -1308,11 +1308,27 @@
     const sizeBufferVad = 480;
     let leftovers = 0;
     let buffer_vad = new Int16Array(sizeBufferVad);
+
+    const minvoice = 250;
+    const maxsilence = 1500;
+    const maxtime = 6;
+    let silenceblocks = 0;
+    let skipsamples = 0;
+    let finishedvoice = false;
+    let samplesvoice = 0 ;
+    let samplessilence = 0 ;
+    let touchedvoice = false;
+    let touchedsilence = false;
+    let dtantes = Date.now();
+    let dtantesmili = Date.now();
+    let raisenovoice = false;
+    let done = false;
+    let context;
     function recorderProcess(e) {
       let buffer_pcm = new Int16Array(e.inputBuffer.getChannelData(0).length);
       floatTo16BitPCM(buffer_pcm, e.inputBuffer.getChannelData(0));
 
-      for (let i = 0; i < Math.ceil(buffer_pcm.length/sizeBufferVad); i++) {
+      for (let i = 0; i < Math.ceil(buffer_pcm.length/sizeBufferVad) && !done; i++) {
         let start = i * sizeBufferVad;
         let end = start+sizeBufferVad;
         if ((start + sizeBufferVad) > buffer_pcm.length) {
@@ -1329,10 +1345,48 @@
             // envia para o vad
             buffer_vad.set(buffer_pcm.slice(start, end));
           }
-          let silence = isSilence(buffer_vad);
+
+          // whole vad algorithm comes here
+          let vad = isSilence(buffer_vad);
           buffer_vad = new Int16Array(sizeBufferVad);
+          let dtdepois = Date.now();
+          if (vad == 0) {
+            if (touchedvoice) {
+              samplessilence += dtdepois - dtantesmili;
+              if (samplessilence >  maxsilence) touchedsilence = true;
+            }
+          }
+          else {
+            samplesvoice  += dtdepois - dtantesmili;
+            if (samplesvoice >  minvoice) touchedvoice = true;
+          }
+          dtantesmili = dtdepois;
+
+          if (touchedvoice && touchedsilence)
+            finishedvoice = true;
+
+          if (finishedvoice){
+            done = true;
+            goCloud('GoCloud finishedvoice');
+          }
+
+          if ((dtdepois - dtantes)/1000 > maxtime ) {
+            done = true;
+            if (touchedvoice) {
+              goCloud('GoCloud timeout');
+            } else {
+              goCloud('Raise novoice');
+              raisenovoice = true;
+            }
+          }
+
         }
       }
+    }
+
+    function goCloud(type) {
+      console.log(type)
+      context.close();
     }
 
 
@@ -1347,30 +1401,28 @@
 
         // Call function and get result
         let result = process_data(dataHeap.byteOffset, buffer_pcm.length, 48000, buffer_pcm[0], buffer_pcm[100], buffer_pcm[2000]);
-        console.log(result);
 
         // Free memory
         Module._free(dataHeap.byteOffset);
+        return result;
     }
 
     let constraints = { audio: true };
     navigator.mediaDevices.getUserMedia(constraints)
             .then(function(stream) {
-
-              var audioContext = window.AudioContext;
-              var context = new audioContext();
-              console.log(context.sampleRate);
-              var audioInput = context.createMediaStreamSource(stream);
-              var bufferSize = 2048;
-              // create a javascript node
-              var recorder = context.createScriptProcessor(bufferSize, 1, 1);
-              // specify the processing function
-              recorder.onaudioprocess = recorderProcess;
-              // connect stream to our recorder
-              audioInput.connect(recorder);
-              // connect our recorder to the previous destination
-              recorder.connect(context.destination);
-
+                let audioContext = window.AudioContext;
+                context = new audioContext();
+                console.log(context.sampleRate);
+                var audioInput = context.createMediaStreamSource(stream);
+                var bufferSize = 2048;
+                // create a javascript node
+                var recorder = context.createScriptProcessor(bufferSize, 1, 1);
+                // specify the processing function
+                recorder.onaudioprocess = recorderProcess;
+                // connect stream to our recorder
+                audioInput.connect(recorder);
+                // connect our recorder to the previous destination
+                recorder.connect(context.destination);
             })
             .catch(function(err) {
               console.log(`Recording error: ${err}`);
