@@ -1,0 +1,24 @@
+{
+  "name": "webrtcvad_js",
+  "description": "JavaScript port of Webrtc VAD using emscripten",
+  "version": "1.0.0",
+  "author": "Mozilla",
+  "bugs": {
+    "url": "https://github.com/mozilla/webrtcvad_js/issues"
+  },
+  "files": [
+    "LICENSE",
+    "webrtc_vad.js"
+  ],
+  "homepage": "https://github.com/mozilla/webrtcvad_js#readme",
+  "keywords": [],
+  "license": "MPL-2.0",
+  "main": "webrtc_vad.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mozilla/webrtcvad_js.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
